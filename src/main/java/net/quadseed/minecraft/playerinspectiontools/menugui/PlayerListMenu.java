@@ -28,9 +28,10 @@ public class PlayerListMenu extends BaseMenu {
 
     @Override
     public String getMenuName() {
-        return ChatColor.GREEN + "In-Game Player List ("
-                + Bukkit.getServer().getOnlinePlayers().size() + " / " +
-                Bukkit.getServer().getMaxPlayers() + ")";
+        return ChatColor.LIGHT_PURPLE + "PlayerList ["
+                + ChatColor.BLUE + Bukkit.getServer().getOnlinePlayers().size()
+                + " player(s)"
+                + ChatColor.LIGHT_PURPLE + "]";
     }
 
     @Override

@@ -13,6 +13,7 @@ public class PlayerActionListener implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         InventoryHolder holder = event.getInventory().getHolder();
         if (holder instanceof BaseMenu) {
+            event.setCancelled(true);
             BaseMenu menu = (BaseMenu) holder;
             menu.InventoryClickHandler(event);
         }

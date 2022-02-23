@@ -7,6 +7,8 @@ description: Player Inspection Tools for PaperMC Server
 commands:
   inspector:
     description: Inspector
+    aliases:
+      - isp
     usage: /inspector
     permission: inspector.tools
 

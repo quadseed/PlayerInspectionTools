@@ -8,5 +8,7 @@ public final class PlayerInspectionTools extends JavaPlugin {
     @Override
     public void onEnable() {
         getCommand("inspector").setExecutor(new InspectorCommand());
+
+        getServer().getPluginManager().registerEvents(new PlayerActionListener(), this);
     }
 }

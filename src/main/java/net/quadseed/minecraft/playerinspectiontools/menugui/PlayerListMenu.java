@@ -11,6 +11,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
@@ -58,10 +59,12 @@ public class PlayerListMenu extends BaseMenu {
                 if (players.get(index) != null) {
                     ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD, 1);
                     ItemMeta headMeta = playerHead.getItemMeta();
-                    headMeta.setDisplayName(ChatColor.GOLD + players.get(index).getName());
-                    headMeta.getPersistentDataContainer().set(new NamespacedKey(PlayerInspectionTools.getPlugin(), "uuid"), PersistentDataType.STRING, players.get(index).getUniqueId().toString());
+                    SkullMeta skullMeta = (SkullMeta) headMeta;
+                    skullMeta.setDisplayName(ChatColor.GOLD + players.get(index).getName());
+                    skullMeta.setOwningPlayer(players.get(index));
+                    skullMeta.getPersistentDataContainer().set(new NamespacedKey(PlayerInspectionTools.getPlugin(), "uuid"), PersistentDataType.STRING, players.get(index).getUniqueId().toString());
 
-                    playerHead.setItemMeta(headMeta);
+                    playerHead.setItemMeta(skullMeta);
                     inventory.addItem(playerHead);
                 }
 

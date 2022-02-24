@@ -4,3 +4,15 @@ main: net.quadseed.minecraft.playerinspectiontools.PlayerInspectionTools
 api-version: 1.17
 authors: [ quadseed ]
 description: Player Inspection Tools for PaperMC Server
+commands:
+  inspector:
+    description: Inspector
+    aliases:
+      - isp
+    usage: /inspector
+    permission: inspector.tools
+
+permissions:
+  inspector.tools:
+    description: Inspector Tool Permission
+    default: op

@@ -15,6 +15,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class PlayerListMenu extends BaseMenu {
 
@@ -41,7 +42,18 @@ public class PlayerListMenu extends BaseMenu {
 
     @Override
     public void InventoryClickHandler(InventoryClickEvent event) {
+        if (event.getCurrentItem() == null) {
+            return;
+        }
 
+        switch (event.getCurrentItem().getType()) {
+            case PLAYER_HEAD:
+                MenuUtility menuUtility = MenuUtilityManager.getMenuUtility((Player) event.getWhoClicked());
+                menuUtility.setInspectionTarget(Bukkit.getPlayer(UUID.fromString(event.getCurrentItem().getItemMeta().getPersistentDataContainer().get(new NamespacedKey(PlayerInspectionTools.getPlugin(), "uuid"), PersistentDataType.STRING))));
+
+                new PlayerStatusMenu(menuUtility).open();
+                break;
+        }
     }
 
     @Override

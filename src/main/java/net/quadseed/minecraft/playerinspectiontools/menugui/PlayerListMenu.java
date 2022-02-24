@@ -84,9 +84,9 @@ public class PlayerListMenu extends BaseMenu {
         left.setItemMeta(leftMeta);
         inventory.setItem(48, left);
 
-        ItemStack pageIndex = new ItemStack(Material.MAP, page);
+        ItemStack pageIndex = new ItemStack(Material.MAP, (page + 1));
         ItemMeta meta2 = pageIndex.getItemMeta();
-        meta2.setDisplayName(ChatColor.DARK_GREEN + "Page" + (page + 1));
+        meta2.setDisplayName(ChatColor.DARK_GREEN + "Page " + (page + 1));
         meta2.addEnchant(Enchantment.LUCK, 1, true);
         meta2.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         pageIndex.setItemMeta(meta2);

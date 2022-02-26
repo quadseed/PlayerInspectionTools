@@ -78,6 +78,8 @@ public class PlayerStatusMenu extends BaseMenu {
         List<String> infoLore = new ArrayList<>();
         Location targetLocation = targetPlayer.getLocation();
         infoLore.add(ChatColor.RED + "Health: " + Math.floor(targetPlayer.getHealth()) + "/" + Math.floor(targetPlayer.getMaxHealth()));
+        infoLore.add(ChatColor.LIGHT_PURPLE + "Food Level: " + targetPlayer.getFoodLevel());
+        infoLore.add(ChatColor.BLUE + "Dimension: " + targetPlayer.getWorld().getEnvironment().name());
         infoLore.add(ChatColor.GREEN + "Location: X=" + targetLocation.getBlockX() + " Y=" + targetLocation.getBlockY() + " Z=" + targetLocation.getBlockZ());
         infoSymbolMeta.setLore(infoLore);
         infoSymbol.setItemMeta(infoSymbolMeta);

@@ -1,8 +1,6 @@
 package net.quadseed.minecraft.playerinspectiontools.menugui;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -85,6 +83,13 @@ public class PlayerStatusMenu extends BaseMenu {
         infoSymbol.setItemMeta(infoSymbolMeta);
 
         inventory.setItem(22, infoSymbol);
+
+        ItemStack quit = new ItemStack(Material.BARRIER, 1);
+        ItemMeta quitMeta = quit.getItemMeta();
+        quitMeta.setDisplayName(ChatColor.BLUE + "back to PlayerList");
+        quit.setItemMeta(quitMeta);
+
+        inventory.setItem(7, quit);
 
     }
 }

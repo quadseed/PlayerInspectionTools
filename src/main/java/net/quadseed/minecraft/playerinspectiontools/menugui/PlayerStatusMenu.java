@@ -57,9 +57,11 @@ public class PlayerStatusMenu extends BaseMenu {
         skullMeta.setDisplayName(ChatColor.GOLD + targetPlayer.getName());
         skullMeta.setOwningPlayer(targetPlayer);
         List<String> lore = new ArrayList<>();
+
         lore.add("UUID: " + targetPlayer.getUniqueId());
-        lore.add("Ping: " + targetPlayer.getPing());
-        lore.add("IP: " + targetPlayer.getAddress());
+        lore.add("Ping: " + targetPlayer.getPing() + "ms");
+        String address = targetPlayer.getAddress().toString();
+        lore.add("IP: " + address.substring(address.indexOf("/")+1));
         lore.add("Host: " + targetPlayer.getAddress().getHostName());
         lore.add("Last login: " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss z").format(new Date(targetPlayer.getLastLogin())));
 

@@ -33,7 +33,19 @@ public class PlayerStatusMenu extends BaseMenu {
 
     @Override
     public void InventoryClickHandler(InventoryClickEvent event) {
+        if (event.getCurrentItem() == null) {
+            return;
+        }
 
+        switch (event.getCurrentItem().getType()) {
+            case CHEST:
+                new PlayerInventoryMenu(MenuUtilityManager.getMenuUtility((Player) event.getWhoClicked())).open();
+                break;
+
+            case BARRIER:
+                new PlayerListMenu(MenuUtilityManager.getMenuUtility((Player) event.getWhoClicked())).open();
+                break;
+        }
     }
 
     @Override

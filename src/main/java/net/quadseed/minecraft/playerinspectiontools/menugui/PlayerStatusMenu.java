@@ -61,7 +61,7 @@ public class PlayerStatusMenu extends BaseMenu {
         lore.add("Ping: " + targetPlayer.getPing());
         lore.add("IP: " + targetPlayer.getAddress());
         lore.add("Host: " + targetPlayer.getAddress().getHostName());
-        lore.add("Last seen: " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss z").format(new Date(targetPlayer.getLastSeen())));
+        lore.add("Last login: " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss z").format(new Date(targetPlayer.getLastLogin())));
 
         skullMeta.setLore(lore);
 

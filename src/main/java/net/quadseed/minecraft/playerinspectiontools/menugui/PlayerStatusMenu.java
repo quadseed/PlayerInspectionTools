@@ -28,7 +28,7 @@ public class PlayerStatusMenu extends BaseMenu {
 
     @Override
     public int getSlots() {
-        return 36;
+        return 18;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class PlayerStatusMenu extends BaseMenu {
         skullMeta.setLore(lore);
 
         playerHead.setItemMeta(skullMeta);
-        inventory.setItem(1, playerHead);
+        inventory.setItem(0, playerHead);
 
         ItemStack inventorySymbol = new ItemStack(Material.CHEST);
         ItemMeta inventorySymbolMeta = inventorySymbol.getItemMeta();
@@ -79,7 +79,7 @@ public class PlayerStatusMenu extends BaseMenu {
         inventorySymbolMeta.setLore(inventoryLore);
         inventorySymbol.setItemMeta(inventorySymbolMeta);
 
-        inventory.setItem(19, inventorySymbol);
+        inventory.setItem(2, inventorySymbol);
 
         ItemStack infoSymbol = new ItemStack(Material.MAP);
         ItemMeta infoSymbolMeta = infoSymbol.getItemMeta();
@@ -96,14 +96,14 @@ public class PlayerStatusMenu extends BaseMenu {
         infoSymbolMeta.setLore(infoLore);
         infoSymbol.setItemMeta(infoSymbolMeta);
 
-        inventory.setItem(22, infoSymbol);
+        inventory.setItem(4, infoSymbol);
 
         ItemStack quit = new ItemStack(Material.BARRIER, 1);
         ItemMeta quitMeta = quit.getItemMeta();
         quitMeta.setDisplayName(ChatColor.BLUE + "back to PlayerList");
         quit.setItemMeta(quitMeta);
 
-        inventory.setItem(7, quit);
+        inventory.setItem(8, quit);
 
     }
 }

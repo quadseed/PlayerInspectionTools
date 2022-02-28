@@ -28,7 +28,7 @@ public class PlayerStatusMenu extends BaseMenu {
 
     @Override
     public int getSlots() {
-        return 18;
+        return 9;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class PlayerStatusMenu extends BaseMenu {
         inventorySymbolMeta.setLore(inventoryLore);
         inventorySymbol.setItemMeta(inventorySymbolMeta);
 
-        inventory.setItem(2, inventorySymbol);
+        inventory.setItem(4, inventorySymbol);
 
         ItemStack infoSymbol = new ItemStack(Material.MAP);
         ItemMeta infoSymbolMeta = infoSymbol.getItemMeta();
@@ -98,7 +98,7 @@ public class PlayerStatusMenu extends BaseMenu {
         infoSymbolMeta.setLore(infoLore);
         infoSymbol.setItemMeta(infoSymbolMeta);
 
-        inventory.setItem(4, infoSymbol);
+        inventory.setItem(2, infoSymbol);
 
         ItemStack quit = new ItemStack(Material.BARRIER, 1);
         ItemMeta quitMeta = quit.getItemMeta();

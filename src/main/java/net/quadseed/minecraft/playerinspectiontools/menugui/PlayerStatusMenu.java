@@ -100,6 +100,16 @@ public class PlayerStatusMenu extends BaseMenu {
 
         inventory.setItem(2, infoSymbol);
 
+        ItemStack manageSymbol = new ItemStack(Material.NETHERITE_HOE);
+        ItemMeta manageSymbolMeta = manageSymbol.getItemMeta();
+        manageSymbolMeta.setDisplayName("Management");
+        manageSymbolMeta.addEnchant(Enchantment.BINDING_CURSE, 1, true);
+        manageSymbolMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        manageSymbolMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        manageSymbol.setItemMeta(manageSymbolMeta);
+
+        inventory.setItem(6, manageSymbol);
+
         ItemStack quit = new ItemStack(Material.BARRIER, 1);
         ItemMeta quitMeta = quit.getItemMeta();
         quitMeta.setDisplayName(ChatColor.BLUE + "back to PlayerList");

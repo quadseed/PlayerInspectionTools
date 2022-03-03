@@ -1,8 +1,6 @@
 package net.quadseed.minecraft.playerinspectiontools.menugui;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -30,12 +28,24 @@ public class PlayerStatusMenu extends BaseMenu {
 
     @Override
     public int getSlots() {
-        return 36;
+        return 9;
     }
 
     @Override
     public void InventoryClickHandler(InventoryClickEvent event) {
+        if (event.getCurrentItem() == null) {
+            return;
+        }
 
+        switch (event.getCurrentItem().getType()) {
+            case CHEST:
+                new PlayerInventoryMenu(MenuUtilityManager.getMenuUtility((Player) event.getWhoClicked())).open();
+                break;
+
+            case BARRIER:
+                new PlayerListMenu(MenuUtilityManager.getMenuUtility((Player) event.getWhoClicked())).open();
+                break;
+        }
     }
 
     @Override
@@ -47,16 +57,18 @@ public class PlayerStatusMenu extends BaseMenu {
         skullMeta.setDisplayName(ChatColor.GOLD + targetPlayer.getName());
         skullMeta.setOwningPlayer(targetPlayer);
         List<String> lore = new ArrayList<>();
+
         lore.add("UUID: " + targetPlayer.getUniqueId());
-        lore.add("Ping: " + targetPlayer.getPing());
-        lore.add("IP: " + targetPlayer.getAddress());
+        lore.add("Ping: " + targetPlayer.getPing() + "ms");
+        String address = targetPlayer.getAddress().toString();
+        lore.add("IP: " + address.substring(address.indexOf("/")+1));
         lore.add("Host: " + targetPlayer.getAddress().getHostName());
-        lore.add("Last seen: " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss z").format(new Date(targetPlayer.getLastSeen())));
+        lore.add("Last login: " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss z").format(new Date(targetPlayer.getLastLogin())));
 
         skullMeta.setLore(lore);
 
         playerHead.setItemMeta(skullMeta);
-        inventory.setItem(1, playerHead);
+        inventory.setItem(0, playerHead);
 
         ItemStack inventorySymbol = new ItemStack(Material.CHEST);
         ItemMeta inventorySymbolMeta = inventorySymbol.getItemMeta();
@@ -69,7 +81,7 @@ public class PlayerStatusMenu extends BaseMenu {
         inventorySymbolMeta.setLore(inventoryLore);
         inventorySymbol.setItemMeta(inventorySymbolMeta);
 
-        inventory.setItem(19, inventorySymbol);
+        inventory.setItem(4, inventorySymbol);
 
         ItemStack infoSymbol = new ItemStack(Material.MAP);
         ItemMeta infoSymbolMeta = infoSymbol.getItemMeta();
@@ -80,11 +92,30 @@ public class PlayerStatusMenu extends BaseMenu {
         List<String> infoLore = new ArrayList<>();
         Location targetLocation = targetPlayer.getLocation();
         infoLore.add(ChatColor.RED + "Health: " + Math.floor(targetPlayer.getHealth()) + "/" + Math.floor(targetPlayer.getMaxHealth()));
+        infoLore.add(ChatColor.LIGHT_PURPLE + "Food Level: " + targetPlayer.getFoodLevel());
+        infoLore.add(ChatColor.BLUE + "Dimension: " + targetPlayer.getWorld().getEnvironment().name());
         infoLore.add(ChatColor.GREEN + "Location: X=" + targetLocation.getBlockX() + " Y=" + targetLocation.getBlockY() + " Z=" + targetLocation.getBlockZ());
         infoSymbolMeta.setLore(infoLore);
         infoSymbol.setItemMeta(infoSymbolMeta);
 
-        inventory.setItem(22, infoSymbol);
+        inventory.setItem(2, infoSymbol);
+
+        ItemStack manageSymbol = new ItemStack(Material.NETHERITE_HOE);
+        ItemMeta manageSymbolMeta = manageSymbol.getItemMeta();
+        manageSymbolMeta.setDisplayName("Management");
+        manageSymbolMeta.addEnchant(Enchantment.BINDING_CURSE, 1, true);
+        manageSymbolMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        manageSymbolMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        manageSymbol.setItemMeta(manageSymbolMeta);
+
+        inventory.setItem(6, manageSymbol);
+
+        ItemStack quit = new ItemStack(Material.BARRIER, 1);
+        ItemMeta quitMeta = quit.getItemMeta();
+        quitMeta.setDisplayName(ChatColor.BLUE + "back to PlayerList");
+        quit.setItemMeta(quitMeta);
+
+        inventory.setItem(8, quit);
 
     }
 }

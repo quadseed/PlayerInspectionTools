@@ -1,5 +1,6 @@
 package net.quadseed.minecraft.playerinspectiontools.menugui;
 
+import net.quadseed.minecraft.playerinspectiontools.items.buttons.QuitComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -70,11 +71,6 @@ public class PlayerInventoryMenu extends BaseMenu {
 
         inventory.setItem(50, targetPlayer.getInventory().getItemInOffHand());
 
-        ItemStack quit = new ItemStack(Material.BARRIER, 1);
-        ItemMeta quitMeta = quit.getItemMeta();
-        quitMeta.setDisplayName(ChatColor.BLUE + "back to Status Page");
-        quit.setItemMeta(quitMeta);
-
-        inventory.setItem(53, quit);
+        inventory.setItem(53, QuitComponent.getItem());
     }
 }

@@ -28,6 +28,8 @@ public class PlayerInfoComponent {
         lore.add("IP: " + address.substring(address.indexOf("/")+1));
         lore.add("Host: " + targetPlayer.getAddress().getHostName());
         lore.add("Last login: " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss z").format(new Date(targetPlayer.getLastLogin())));
+        lore.add("");
+        lore.add(ChatColor.DARK_GRAY + "Last Updated: " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss z").format(new Date()));
 
         skullMeta.setLore(lore);
 

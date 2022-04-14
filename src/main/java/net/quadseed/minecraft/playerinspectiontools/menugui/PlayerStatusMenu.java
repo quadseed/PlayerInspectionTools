@@ -28,7 +28,19 @@ public class PlayerStatusMenu extends BaseMenu {
             return;
         }
 
+        Player targetPlayer = super.menuUtility.getInspectionTarget();
+
         switch (event.getCurrentItem().getType()) {
+            case PLAYER_HEAD:
+                inventory.setItem(0, PlayerInfoComponent.getItem(targetPlayer));
+                menuUtility.getOwner().playSound(menuUtility.getOwner().getLocation(), org.bukkit.Sound.BLOCK_NOTE_BLOCK_HARP, 1, 1);
+                break;
+
+            case MAP:
+                inventory.setItem(2, InGameInfoComponent.getItem(targetPlayer));
+                menuUtility.getOwner().playSound(menuUtility.getOwner().getLocation(), org.bukkit.Sound.BLOCK_NOTE_BLOCK_HARP, 1, 1);
+                break;
+
             case CHEST:
                 new PlayerInventoryMenu(MenuUtilityManager.getMenuUtility((Player) event.getWhoClicked())).open();
                 break;
